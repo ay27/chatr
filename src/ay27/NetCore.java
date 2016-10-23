@@ -162,7 +162,7 @@ public class NetCore {
                 break;
             case MSG:
                 if (tmp != null) {
-                    this.handler.onRecvMsg(tmp, datas[1]);
+                    this.handler.onRecvMsg(tmp, datas[2]);
                 }
                 break;
             case FILE:
@@ -288,7 +288,7 @@ public class NetCore {
         _send(msgSendFileReq(uuid.toString(), file.getName()), udpChannel, new InetSocketAddress(targetUser.ip, targetUser.port));
 
         new Thread(() -> {
-            byte[] buf = new byte[10240];
+            byte[] buf = new byte[1024];
             DatagramPacket dp = new DatagramPacket(buf, buf.length);
             try {
                 fileChanel.receive(dp);
